@@ -94,7 +94,7 @@ async def choose(self, ctx, *, choices: str):
     """choose between the given choices.
     'r!choose this | this | that'
     """
-	await ctx.send(f'I choose ```{random.choice(choices.split("|"))}```') 
+    await ctx.send(f'I choose ```{random.choice(choices.split("|"))}```') 
 		#You can only change the symbol splitting the choices by hardcoding it
 			
 @client.command(aliases=["otd"])
