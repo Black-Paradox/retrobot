@@ -89,31 +89,31 @@ async def _8ball(ctx, *, question):
         'Very doubtful.']
     await ctx.send(f'> {question}' + f'\n**{random.choice(responses)}**')
 	
-	@client.command(pass_context=True)
-	async def choose(self, ctx, *, choices: str):
-    	"""choose between the given choices.
-    	'r!choose this | this | that'
-    	"""
-    await ctx.send(f'I choose ```{random.choice(choices.split("|"))}```') 
+@client.command(pass_context=True)
+async def choose(self, ctx, *, choices: str):
+    """choose between the given choices.
+    'r!choose this | this | that'
+    """
+	await ctx.send(f'I choose ```{random.choice(choices.split("|"))}```') 
 		#You can only change the symbol splitting the choices by hardcoding it
 			
-	@client.command(aliases=["otd"])
-    async def onthisday(self, ctx):
-        """Gives a random fact about today !"""
-        base_url = "http://numbersapi.com/"
-        day = datetime.datetime.today().day
-        month = datetime.datetime.today().month
-        endpoint = f"{base_url}/{month}/{day}/?json"
+@client.command(aliases=["otd"])
+async def onthisday(self, ctx):
+    """Gives a random fact about today !"""
+    base_url = "http://numbersapi.com/"
+    day = datetime.datetime.today().day
+    month = datetime.datetime.today().month
+    endpoint = f"{base_url}/{month}/{day}/?json"
 
-        fact = await http.api_request(endpoint)
-        embed = discord.Embed(
-            title="On This Day...",
-            author=f'Day {fact["number"]}',
-            description=fact.get("text"),
-            colour=0x0000ff
+    fact = await http.api_request(endpoint)
+    embed = discord.Embed(
+         title="On This Day...",
+         author=f'Day {fact["number"]}',
+         description=fact.get("text"),
+         colour=0x0000ff
         )
-        embed.set_footer(text=base_url)
-        return await ctx.send(embed=embed)
+    embed.set_footer(text=base_url)
+    return await ctx.send(embed=embed)
 	
 				   
 client.run(token)
